@@ -1,0 +1,57 @@
+html,
+body,
+#viewDiv {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+}
+
+#layer-list-btn, #basemap-gallery-btn {
+    padding: 6px 6px;
+    cursor: pointer;
+}
+
+div.esri-component.esri-layer-list.esri-widget.esri-widget--panel {
+    display: none;
+}
+
+div.esri-component.esri-basemap-gallery.esri-widget.esri-widget--panel-height-only {
+    display: none;
+}
+
+
+
+.search-container {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+} 
+
+ #search-input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+} 
+
+#search-button {
+    padding: 10px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#search-button:hover {
+    background-color: #0056b3;
+}
+
+#results {
+    margin-top: 20px;
+} 
