@@ -7,7 +7,7 @@ body,
     width: 100%;
 }
 
-#layer-list-btn, #basemap-gallery-btn {
+#layer-list-btn, #basemap-gallery-btn, #directions-button {
     padding: 6px 6px;
     cursor: pointer;
 }
@@ -17,6 +17,14 @@ div.esri-component.esri-layer-list.esri-widget.esri-widget--panel {
 }
 
 div.esri-component.esri-basemap-gallery.esri-widget.esri-widget--panel-height-only {
+    display: none;
+}
+
+div.esri-component.esri-directions.esri-widget.esri-widget--panel.esri-directions__scroller {
+    display: none;
+}
+
+div.esri-component.esri-search.esri-widget {
     display: none;
 }
 
@@ -39,7 +47,7 @@ div.esri-component.esri-basemap-gallery.esri-widget.esri-widget--panel-height-on
     margin-bottom: 10px;
 } 
 
-#search-button {
+#search-button, #layer-list-btn, #basemap-gallery-btn, #directions-button {
     padding: 10px;
     background-color: #007BFF;
     color: white;

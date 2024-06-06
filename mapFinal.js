@@ -1,16 +1,16 @@
 require(
     [
-    "esri/config",
-    "esri/WebMap",
-    "esri/views/MapView",
-    "esri/widgets/Home",
-    "esri/widgets/LayerList",
-    "esri/widgets/BasemapGallery",
-    "esri/widgets/Directions",
-    "esri/layers/RouteLayer",
-    "esri/widgets/ScaleBar",
-    "esri/widgets/Search",
-],
+        "esri/config",
+        "esri/WebMap",
+        "esri/views/MapView",
+        "esri/widgets/Home",
+        "esri/widgets/LayerList",
+        "esri/widgets/BasemapGallery",
+        "esri/widgets/Directions",
+        "esri/layers/RouteLayer",
+        "esri/widgets/ScaleBar",
+        "esri/widgets/Search",
+    ],
 
     function (
         esriConfig,
@@ -48,6 +48,10 @@ require(
 
         });
 
+        view.ui.add("directions-button", "bottom-left");
+        view.ui.add(directionWidget, "bottom-left");
+        
+
         function search(query) {
             const resultsContainer = document.getElementById('results');
             resultsContainer.innerHTML = '';
@@ -84,8 +88,6 @@ require(
             position: "bottom-right"
         });
 
-
-
         const homeBtn = new Home({
             view
         });
@@ -109,45 +111,54 @@ require(
         //Search Widget
 
         const searchWidget = new Search({
-            view: view, 
+            view: view,
             apiKey: esriConfig.apiKey
 
         });
 
         view.ui.add(searchWidget, "top-right");
+        view.ui.add("search-button", "top-right")
+
+        document.getElementById("layer-list-btn").addEventListener('click', () => {
+            toggleButton('layerList');
+        });
+
+        document.getElementById("directions-button").addEventListener('click', () => {
+            toggleButton("directions");
+        });
+
+        document.getElementById("basemap-gallery-btn").addEventListener('click', () => {
+            toggleButton("gallery");
+        });
+
+        document.getElementById("search-button").addEventListener('click', () => {
+            toggleButton("search");
+        });
+
+        
+
+        function toggleButton (element) {
+
+            if (element == 'layerList') {
+                const layerListWidget = document.getElementsByClassName("esri-layer-list")[0];
+                const currentProp = layerListWidget.style.getPropertyValue("display");
+                layerListWidget.style.setProperty("display", currentProp == "none" ? "block" : "none" )
+
+            } else if (element == 'gallery') {
+                const galleryWidget = document.getElementsByClassName("esri-basemap-gallery")[0];
+                const currentProp = galleryWidget.style.getPropertyValue("display");
+                galleryWidget.style.setProperty("display", currentProp == "none" ? "block" : "none" )
+
+            } else if (element == 'directions') {
+                const directionsWidget = document.getElementsByClassName("esri-icon-directions")[0];
+                const currentProp = directionsWidget.style.getPropertyValue("display");
+                directionsWidget.style.setProperty("display", currentProp == "none" ? "block" : "none" )
+
+            } else if (element == 'search') {
+                const searchWidget = document.getElementsByClassName("esri-icon-search")[0];
+                const currentProp = searchWidget.style.getPropertyValue("display");
+                searchWidget.style.setProperty("display", currentProp == "none" ? "block" : "none" )
+            }
+        }
+
     });
-
-        // searchWidget.on("search-complete", (event) => {
-        //      }); 
-        //     searchWidget.on("select-result", event => {
-        //         console.log("Selected result: ", event.result);
-
-        //         view.ui.add("search-button", "bottom-left");
-
-        //         document.getElementById("layer-list-btn").addEventListener("click", function () {
-        //             toggleButton("layer-list");
-        //         });
-
-        //         document.getElementById("basemap-gallery-btn").addEventListener("click", function () {
-        //             toggleButton("gallery");
-        //         });
-
-        //         document.getElementById("search-button").addEventListener('click', function () {
-        //             const query = document.getElementById('search-input').value;
-        //             search(query);
-        //             toggleButton("search");
-        //         });
-
-        //         function toggleButton(element) {
-        //             if (element == "layer-list") {
-        //                 const layerListEl = document.getElementsByClassName("esri-layer-list")[0];
-        //                 const currentProp = layerListEl.style.getPropertyValue("display");
-        //                 layerListEl.style.setProperty("display", currentProp == "none" ? "block" : "none");
-        //             } else if (element == "gallery") {
-        //                 const galleryEl = document.getElementsByClassName("esri-basemap-gallery")[0];
-        //                 const currentPropGallery = galleryEl.style.getPropertyValue("display");
-        //                 galleryEl.style.setProperty("display", currentPropGallery == "none" ? "block" : "none");
-        //             }
-        //         }
-
-        //     });
